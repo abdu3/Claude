@@ -61,3 +61,9 @@ Then all cards light up ("5 نجوم من الرياض للدمام للطائف
 
 - Voice: ElevenLabs **Mona** (white Saudi dialect, eleven_v4). Original take: `trust/voiceover-mona-saudi.mp3`.
 - `trust/render_trust.py <vo_dir> <out.mp4>`: card positions, timeline, subtitles (customer name in gold), music and SFX.
+
+### Short cut for TikTok / Instagram Reels (under 30 s)
+
+`output/silverhaven-reviews-reel-tiktok-28s.mp4` (29.6 s): hook → Batool → Yousef → 5-star social proof → Tabby → CTA,
+cut from the same Mona take (no new generation). Rendered with `render_trust.py <vo_dir> <out> --short`: tighter
+pacing, and subtitles raised to y=1420 so TikTok/Reels caption and button overlays don't cover them.

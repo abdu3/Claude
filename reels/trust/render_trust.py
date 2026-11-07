@@ -12,6 +12,7 @@ FONTS = os.path.join(HERE, "..", "fonts")
 W, H, FPS, SR = 1080, 1920, 30, 48000
 VO, OUT = sys.argv[1], sys.argv[2]
 STILLS = sys.argv[4] if len(sys.argv) > 4 and sys.argv[3] == "--stills" else None
+SHORT = "--short" in sys.argv   # tighter pacing for a 20-30 s TikTok / Reels cut
 
 # ------------------------------------------------------------------ script (subtitle per voiceover line)
 LINES = [
@@ -160,7 +161,7 @@ def name_quote(name, quote, size=50):
     out[h - a.shape[0]:, -a.shape[1]:] = a; out[h - b.shape[0]:, :b.shape[1]] = b
     return out
 
-SUB = [name_quote(*s) if isinstance(s, tuple) else text(s, 50) for _, s in LINES]
+SUB = {k: name_quote(*s) if isinstance(s, tuple) else text(s, 50) for k, s in LINES}
 T_HOOK = text("وش يقولون عملاءنا؟", 92)
 T_HOOK2 = text("عن سيلفر هافن", 64, (200, 215, 235), bold=False)
 T_STARS = text("★★★★★", 80, (40, 190, 250)) if False else None
@@ -184,10 +185,10 @@ STAR = star_icon(84)
 
 # ------------------------------------------------------------------ timeline
 info = json.load(open(os.path.join(VO, "lines.json")))
-LEAD, TAIL = 0.25, 0.35
+LEAD, TAIL = (0.15, 0.2) if SHORT else (0.25, 0.35)
 scenes, t = [], 0.0
 for i, ln in enumerate(info):
-    d = LEAD + ln["dur"] + TAIL + (1.8 if ln["id"] == "cta" else 0)
+    d = LEAD + ln["dur"] + TAIL + ((1.0 if SHORT else 1.8) if ln["id"] == "cta" else 0)
     scenes.append(dict(id=ln["id"], t0=t, t1=t + d, wav=ln["file"], i=i)); t += d
 TOTAL = t
 SC = {s["id"]: s for s in scenes}
@@ -279,11 +280,12 @@ def frame(t):
             for j, (img, y) in enumerate([(T_END1, 1060), (T_END2, 1160), (T_URL, 1300)]):
                 q = eo(prog(lt, 2.2 + 0.2 * j, 2.8 + 0.2 * j)); blit(f, img, W / 2, y + 30 * (1 - q), op=q)
     if sid != "cta" or lt < 1.8:
-        sp = SUB[sc["i"]]; o = eo(prog(lt, 0.1, 0.4)) * (1 - prog(lt, sc["t1"] - sc["t0"] - 0.25, sc["t1"] - sc["t0"]))
+        sp = SUB[sid]; o = eo(prog(lt, 0.1, 0.4)) * (1 - prog(lt, sc["t1"] - sc["t0"] - 0.25, sc["t1"] - sc["t0"]))
         if o > 0:
             sc_ = min(1.0, (W - 110) / sp.shape[1])
-            pill(f, W / 2, 1700, int(min(sp.shape[1] * sc_ + 70, W - 40)), int(sp.shape[0] * sc_ + 30), o)
-            blit(f, sp, W / 2, 1704, op=o, scale=sc_)
+            sy = 1420 if SHORT else 1700   # keep clear of TikTok / Reels caption and button overlays
+            pill(f, W / 2, sy, int(min(sp.shape[1] * sc_ + 70, W - 40)), int(sp.shape[0] * sc_ + 30), o)
+            blit(f, sp, W / 2, sy + 4, op=o, scale=sc_)
     return f
 
 _lm = MASK["logo"][40:140, 40:165]
