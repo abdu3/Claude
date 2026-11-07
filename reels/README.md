@@ -89,3 +89,28 @@ pacing, and subtitles raised to y=1420 so TikTok/Reels caption and button overla
 
 `python3 merge/render_merge.py output/silverhaven-reviews-reel-fixed.mp4 output/silverhaven-reviews-reel-merged.mp4`
 (reuses the spotlight/sparkle code from `trust/render_trust.py`).
+
+## «نفكّ شفرة 925»: "فضة أصلية… ليش مو 100٪؟" (31 s, female Saudi voice)
+
+`output/silverhaven-925-decode-30s.mp4` opens with a question, decodes 925 on screen one fact at a time, and ends on the ring:
+
+| Time | Picture | On screen |
+|---|---|---|
+| 0–3.5 s | Ring close-up, light sweep; "100%" punches in with a muffled hit | فضة أصلية / ليش مو 100%؟ |
+| 3.5–7 s | Ring slides onto the 5 as 925 rises behind it; hand-drawn underline | السر في 925 |
+| 7–10 s | 925 moves up; a composition bar fills right-to-left to 92.5% with a counter | 92.5% فضة نقية |
+| 10–13 s | The rest of the bar lights up in striped gunmetal; a hand-drawn arrow points to it | 7.5% معادن أخرى |
+| 13–20.5 s | Music drops for "ليش نضيفها؟", then ring close-up + a soft wavy line that closes into a firm ring | ليّنة → متماسكة / لزيادة الصلابة |
+| 20.5–23 s | Back to the design's layout; an oval is drawn around the name | فضة استرليني / Sterling Silver |
+| 23–31 s | 925 recedes, ring comes forward, logo | الحين تعرفين معنى 925 ✦ / احفظيها قبل تختارين قطعتك |
+
+- Voice: ElevenLabs **Mona** (white Saudi dialect, eleven_v4), take in `decode/voiceover-mona-decode925.mp3`.
+  The script cuts it at its pauses, tightens the gaps, and times every scene from those cuts (`VO` table).
+- Music bed: synthesized 104 BPM pizzicato motif (ducked under the voice), with pencil-scribble, click, pop and ding effects.
+- Text sits in the centre column and above y≈1480, away from the right edge and the bottom platform overlays.
+
+```bash
+python3 layers.py src/design-925.jpg /tmp/layers
+python3 decode/render_decode.py /tmp/layers output/silverhaven-925-decode-30s.mp4
+python3 decode/render_decode.py /tmp/layers x.mp4 --stills /tmp/sheet.jpg   # 10-frame preview sheet
+```
