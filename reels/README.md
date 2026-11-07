@@ -89,3 +89,10 @@ pacing, and subtitles raised to y=1420 so TikTok/Reels caption and button overla
 
 `python3 merge/render_merge.py output/silverhaven-reviews-reel-fixed.mp4 output/silverhaven-reviews-reel-merged.mp4`
 (reuses the spotlight/sparkle code from `trust/render_trust.py`).
+
+## Bracelets ad — «لا تختارين قبل تشوفين الأخيرة»
+
+Edited from 7 raw phone clips of five bracelets: `output/silverhaven-bracelets-main-24s.mp4` (24.5 s),
+`output/silverhaven-bracelets-short-8s.mp4` (8.5 s), `output/silverhaven-bracelets-cover.jpg`.
+Original synthesized music/SFX (`bracelets/music.py`). Analysis, storyboard, settings and caption:
+`bracelets/PRODUCTION.md`.
