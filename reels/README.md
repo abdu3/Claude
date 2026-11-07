@@ -116,3 +116,11 @@ python3 bracelets/render_ad.py output/silverhaven-bracelets-ad-25s.mp4
 python3 bracelets/render_ad.py out.mp4 --stills sheet.jpg          # contact sheet
 python3 bracelets/render_ad.py out.mp4 --stills f.jpg 6.0 23.5     # full-size frames at given times
 ```
+
+### v2: full production brief (`bracelets/render_v2.py`, `bracelets/PRODUCTION.md`)
+
+Fast TikTok/Reels concept with a navy / silver / white finish: macro stone hook with a speed-ramp pull-out,
+beat-synced detail cuts, product scenes with the bracelet on the left third and text on the right (match cuts),
+a 1·2·3 comment trigger, and an end card. Original 120 BPM score, normalised to −14 LUFS.
+Outputs: `output/silverhaven-bracelets-ad-v2-28s.mp4`, `output/silverhaven-bracelets-ad-v2-9s.mp4`,
+`output/silverhaven-bracelets-ad-v2-cover.jpg`. The shot list, concept scoring, storyboard, caption and QC are in `bracelets/PRODUCTION.md`.
