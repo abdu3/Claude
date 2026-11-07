@@ -78,3 +78,14 @@ pacing, and subtitles raised to y=1420 so TikTok/Reels caption and button overla
   by mirroring and blurring the frame's own edges.
 
 `python3 fix/fix_video.py fix/original-reviews-reel.mp4 output/silverhaven-reviews-reel-fixed.mp4`
+
+## Merged version: store video + cinematic card spotlight
+
+`output/silverhaven-reviews-reel-merged.mp4` (15 s, the store's own voiceover and music):
+- 0–2.9 s and 11.25 s–end: the store video (`output/silverhaven-reviews-reel-fixed.mp4`: full stars, lifted CTA).
+- 3.2–10.95 s: camera spotlight on `trust/src/design-reviews.jpg`, synced to the moments each card appears in the
+  store video (Batool 3.2 s, Yousef 5.1 s, Osamah 8.1 s, all cards 10.1 s), with the store's own title and logo
+  overlaid in the same font. Short crossfades at the joins, navy tint matched to the store video.
+
+`python3 merge/render_merge.py output/silverhaven-reviews-reel-fixed.mp4 output/silverhaven-reviews-reel-merged.mp4`
+(reuses the spotlight/sparkle code from `trust/render_trust.py`).
