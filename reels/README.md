@@ -67,3 +67,14 @@ Then all cards light up ("5 نجوم من الرياض للدمام للطائف
 `output/silverhaven-reviews-reel-tiktok-28s.mp4` (29.6 s): hook → Batool → Yousef → 5-star social proof → Tabby → CTA,
 cut from the same Mona take (no new generation). Rendered with `render_trust.py <vo_dir> <out> --short`: tighter
 pacing, and subtitles raised to y=1420 so TikTok/Reels caption and button overlays don't cover them.
+
+## Fixes to the store's own reviews reel
+
+`output/silverhaven-reviews-reel-fixed.mp4` is `fix/original-reviews-reel.mp4` (15 s) with two changes, same audio:
+- **Full gold stars from the first frame** (`fix/stars.py`): rating stars that were still grey or filling are
+  detected (star outline match, rows of stars on the white cards, not touching text) and repainted gold.
+- **CTA and link lifted out of the TikTok/Reels overlay zone** (`fix/fix_video.py`): during the existing camera
+  move into the ending (frames 329–355) the scene shrinks to 86% toward the top; the margins are filled
+  by mirroring and blurring the frame's own edges.
+
+`python3 fix/fix_video.py fix/original-reviews-reel.mp4 output/silverhaven-reviews-reel-fixed.mp4`
