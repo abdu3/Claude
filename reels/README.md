@@ -89,3 +89,30 @@ pacing, and subtitles raised to y=1420 so TikTok/Reels caption and button overla
 
 `python3 merge/render_merge.py output/silverhaven-reviews-reel-fixed.mp4 output/silverhaven-reviews-reel-merged.mp4`
 (reuses the spotlight/sparkle code from `trust/render_trust.py`).
+
+## Bracelets ad: "أي سوار يناسب ذوقك؟"
+
+`output/silverhaven-bracelets-ad-25s.mp4` (25.5 s, 1080×1920, 30 fps) is built from three product photos in
+`bracelets/src/`: the tennis bracelet, the two-tone hearts bracelet and the two-tone pavé link bracelet.
+
+| Time | Scene |
+|---|---|
+| 0–1.5 s | Hook: three punch-in detail cuts (one per bracelet) on the beat, with a flash and an impact sound |
+| 1.5–3 s | Question: "أي سوار يناسب ذوقك؟" / "3 تصاميم فضة عيار 925" |
+| 3–8 s | 1 · سوار التنس الكلاسيكي: pan down the stones, then pull out |
+| 8–13 s | 2 · سوار القلوب: wide shot pushing in along the hearts |
+| 13–18 s | 3 · سوار الروابط المرصّع: pan up the links, then pull out |
+| 18–21.5 s | Split screen 1 / 2 / 3: "رقمك المفضل؟ اكتبه لنا بالتعليقات" (to get comments) |
+| 21.5–25.5 s | End card: logo, فضة عيار 925 أصلية, تسوّق الآن, silverhaven-sa.com, Tabby |
+
+Effects: sparkle glints placed automatically on the bracelet's own highlights (the shop's background lights
+are skipped), a light sweep over the metal, a whip blur between products, and a gold number badge for each
+product. Synthesized 120 BPM music (cuts land on the beat) plus sound effects. All text sits inside the
+TikTok / Reels / Snap safe zone.
+The product text only states what the photos show (zircon stones, gold and silver tones).
+
+```bash
+python3 bracelets/render_ad.py output/silverhaven-bracelets-ad-25s.mp4
+python3 bracelets/render_ad.py out.mp4 --stills sheet.jpg          # contact sheet
+python3 bracelets/render_ad.py out.mp4 --stills f.jpg 6.0 23.5     # full-size frames at given times
+```
