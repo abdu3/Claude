@@ -44,3 +44,10 @@ python3 edu/render_edu.py /tmp/layers /tmp/vo output/silverhaven-925-explainer-v
 To use a human recording instead: record each line from `edu/script.py` as a WAV, put the files in the
 vo folder under the same names (`00_hook.wav`, `01_what.wav`, …), and update the durations in `lines.json`
 (or re-run a small ffprobe loop); the animation re-times itself to the new audio.
+
+### Saudi-dialect voice (ElevenLabs)
+
+`output/silverhaven-925-explainer-saudi-voice.mp4` (54 s) uses the ElevenLabs voice **Mansour**
+(white Saudi dialect, model eleven_v4). The original take is kept in `edu/voiceover-mansour-saudi.mp3`;
+it was split into the 10 lines of `edu/script.py` at the pauses between sentences, then the animation
+was re-timed to it. The subtitles in `edu/script.py` are in the same dialect.
