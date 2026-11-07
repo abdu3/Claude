@@ -51,3 +51,13 @@ vo folder under the same names (`00_hook.wav`, `01_what.wav`, …), and update t
 (white Saudi dialect, model eleven_v4). The original take is kept in `edu/voiceover-mansour-saudi.mp3`;
 it was split into the 10 lines of `edu/script.py` at the pauses between sentences, then the animation
 was re-timed to it. The subtitles in `edu/script.py` are in the same dialect.
+
+## Trust reel: customer reviews (ElevenLabs female voice, white Saudi dialect)
+
+`output/silverhaven-reviews-trust-reel.mp4` (52 s), built from `trust/src/design-reviews.jpg`.
+The design is dimmed and the camera moves card by card. Each review card lights up with a glow and a
+star sparkle while the voiceover reads that customer's review word for word (only reviews visible in the design).
+Then all cards light up ("5 نجوم من الرياض للدمام للطائف"), then the Tabby offer on the phone, then the end card.
+
+- Voice: ElevenLabs **Mona** (white Saudi dialect, eleven_v4). Original take: `trust/voiceover-mona-saudi.mp3`.
+- `trust/render_trust.py <vo_dir> <out.mp4>`: card positions, timeline, subtitles (customer name in gold), music and SFX.
