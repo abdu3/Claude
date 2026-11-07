@@ -23,3 +23,24 @@ python3 render.py /tmp/layers output --stills reveal   # contact-sheet preview
 ```
 
 Fonts: Tajawal and Playfair Display (SIL Open Font License, see `fonts/`).
+
+## Educational explainer with Arabic voiceover
+
+`output/silverhaven-925-explainer-voiceover.mp4` (66 s): "ما معنى 925 على الفضة؟"
+Scenes: hook with magnifier → 925 → a 1000-cell grid (925 silver + 75 copper) with counters →
+why pure silver bends and 925 doesn't → Sterling Silver name → look for the 925 stamp → brand end card.
+Arabic subtitles, light synthesized background music (ducked under the voice) and sound effects.
+
+- `edu/script.py`: narration (subtitle text plus fully vowelled text for the TTS engine). Edit here.
+- `edu/tts.py`: offline Arabic TTS (espeak-ng + MBROLA ar2): `apt-get install espeak-ng mbrola mbrola-ar2`
+- `edu/render_edu.py`: animation, audio mix and mux. Scene lengths follow the voiceover automatically.
+
+```bash
+python3 layers.py src/design-925.jpg /tmp/layers
+python3 edu/tts.py /tmp/vo
+python3 edu/render_edu.py /tmp/layers /tmp/vo output/silverhaven-925-explainer-voiceover.mp4
+```
+
+To use a human recording instead: record each line from `edu/script.py` as a WAV, put the files in the
+vo folder under the same names (`00_hook.wav`, `01_what.wav`, …), and update the durations in `lines.json`
+(or re-run a small ffprobe loop); the animation re-times itself to the new audio.

@@ -26,12 +26,16 @@ alphas = {}
 for k, (x0, y0, x1, y1) in BOX.items():
     a = np.zeros((H, W), np.float32)
     if k == "ring":
-        f = img.astype(np.float32)
-        chroma = f[..., 0] - f[..., 2]          # stone is blue, silver is neutral grey
-        e = np.zeros((H, W), np.uint8)
-        cv2.ellipse(e, (690, 1042), (120, 72), -56, 0, 360, 255, -1)
-        a = np.clip((26 - chroma) / 10, 0, 1) * (cv2.GaussianBlur(e, (0, 0), 2) / 255.0)
-        a = a.astype(np.float32)
+        # hand-traced silhouette: outer outline minus the opening (where the 5 shows through)
+        outer = np.array([(707, 978), (730, 988), (747, 1003), (753, 1020), (749, 1050), (738, 1081), (708, 1118),
+                          (680, 1134), (647, 1133), (622, 1118), (611, 1090), (612, 1066), (629, 1030),
+                          (659, 996), (683, 982)], np.int32)
+        hole = np.array([(667, 1033), (690, 1013), (720, 1006), (742, 1009), (745, 1038), (739, 1050), (713, 1070),
+                         (693, 1087), (677, 1097), (663, 1083), (657, 1063), (657, 1050)], np.int32)
+        sil = np.zeros((H, W), np.uint8)
+        cv2.fillPoly(sil, [outer], 255, cv2.LINE_AA); cv2.fillPoly(sil, [hole], 0, cv2.LINE_AA)
+        f = img.astype(np.float32); chroma = f[..., 0] - f[..., 2]   # stone is strongly blue, silver is not
+        a = cv2.GaussianBlur(sil.astype(np.float32) / 255, (0, 0), 1.0) * np.clip((27 - chroma) / 8, 0, 1)
     else:
         base = bg_big if k in ("num", "yaani") else bg
         sub = np.clip((g - base - 22) / 30, 0, 1)
